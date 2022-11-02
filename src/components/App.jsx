@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from "nanoid";
 import FormContacts from './FormContacts/FormContacts';
 import Filter from './Filter/Filter';
@@ -6,21 +6,21 @@ import ContactsList from './ContactsList/ContactsList';
 
 export default function App() {
 
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(() => {
+    const value = JSON.parse(localStorage.getItem("contacts"));
+    return value ?? [];
+  });
   const [filter, setFilter] = useState("");
 
-  // useEffect(() => {
-  //   try {
-  //     const localContacts = JSON.parse(localStorage.getItem("contacts"));
-  //     if (localContacts) {
-  //       setContacts([localContacts]);
-  //     }; 
-  //   } catch (error) {
-  //     // console.log(error);
-  //   };
-    
-  //   localStorage.setItem("contacts", JSON.stringify(contacts));
-  // }, [contacts]);
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem("contacts");
+    };
+  }, []);
 
   const isDublicate = ({name, number}) => {
       const result = contacts.find(item => item.name === name

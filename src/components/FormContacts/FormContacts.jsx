@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from 'yup';
+import scss from './FormContacts.module.scss';
 
 const shema = yup.object().shape({
     name: yup.string()
@@ -27,18 +28,18 @@ export default function FormContacts({addContact}) {
             onSubmit={handleSubmit}
             validationSchema={shema}
         >
-            <Form>
-                <label>
+            <Form className={scss.form}>
+                <label className={scss.formLabel}>
                     Name
-                    <Field type="text" name="name" />
-                    <ErrorMessage component="div" name="name" />
+                    <Field className={scss.formInput} type="text" name="name" />
+                    <ErrorMessage className={scss.error} component="div" name="name" />
                 </label>
-                <label>
+                <label className={scss.formLabel}>
                     Number
-                    <Field type="tel" name="number" />
-                    <ErrorMessage component="div" name="number" />
+                    <Field className={scss.formInput} type="tel" name="number" />
+                    <ErrorMessage className={scss.error} component="div" name="number" />
                 </label>
-                <button type="submit">Add contact</button>
+                <button className={scss.formBtn} type="submit">Add contact</button>
             </Form>
         </Formik>
     );
