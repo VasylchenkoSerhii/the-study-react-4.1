@@ -1,0 +1,28 @@
+.filterWripper {
+    display: block;
+    max-width: 200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 5px;
+    text-align: center;
+    border: 1px solid #37a03b;
+    border-radius: 4px;
+    box-shadow: 10px 10px 5px 0px rgba(55, 160, 59, 1);
+} 
+
+.filterInput {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 160px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #323333;
+    transition: border-color 150ms linear;
+
+    &:focus {
+        outline: none;
+        border: 1px solid #37a03b;
+    }
+}

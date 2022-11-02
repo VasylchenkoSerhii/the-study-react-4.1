@@ -16,12 +16,6 @@ export default function App() {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem("contacts");
-    };
-  }, []);
-
   const isDublicate = ({name, number}) => {
       const result = contacts.find(item => item.name === name
       || item.number === number);
